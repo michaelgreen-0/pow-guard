@@ -6,7 +6,7 @@ from urllib.parse import quote
 from pow import generate_challenge, verify_pow
 from session import save_challenge, get_challenge, mark_verified, is_verified
 from proxy import forward_request
-from config import POW_DIFFICULTY
+from env import POW_DIFFICULTY
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")

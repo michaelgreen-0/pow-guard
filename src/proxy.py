@@ -1,5 +1,5 @@
 import aiohttp
-from config import BACKEND_URL
+from env import BACKEND_URL
 
 async def forward_request(request):
     # Convert headers to a regular string-key dictionary
