@@ -1,21 +1,23 @@
+from redis import Redis
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse, HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from urllib.parse import quote
 
-from pow import generate_challenge, verify_pow
-from session import save_challenge, get_challenge, mark_verified, is_verified
+from env import POW_DIFFICULTY, REDIS_HOST, REDIS_PORT
 from proxy import forward_request
-from env import POW_DIFFICULTY
+from services import Challenger, Verifier
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+redis = Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 @app.get("/pow", response_class=HTMLResponse)
 async def get_pow(request: Request, next: str = "/"):
     ip = request.client.host
-    challenge = generate_challenge()
-    save_challenge(ip, challenge)
+    challenger = Challenger(redis, ip)
+    challenge = challenger.generate_challenge()
+    challenger.save_challenge(challenge=challenge)
     return templates.TemplateResponse("pow.html", {
         "request": request,
         "challenge": challenge,
@@ -27,15 +29,18 @@ async def get_pow(request: Request, next: str = "/"):
 async def submit_pow(request: Request):
     ip = request.client.host
     data = await request.json()
-    challenge = get_challenge(ip)
+    challenger = Challenger(redis, ip)
+    challenge = challenger.get_challenge()
     if not challenge:
         raise HTTPException(status_code=400, detail="Challenge expired or not found")
 
     solution = data.get("solution")
-    if not verify_pow(challenge, solution, POW_DIFFICULTY):
+    verifier = Verifier(redis, ip)
+    is_valid_solution = verifier.verify_pow(challenge, solution, POW_DIFFICULTY)
+    if not is_valid_solution:
         raise HTTPException(status_code=403, detail="Invalid proof of work")
 
-    mark_verified(ip)
+    verifier.mark_verified()
     return {"status": "verified"}
 
 @app.middleware("http")
@@ -44,7 +49,9 @@ async def verify_middleware(request: Request, call_next):
         return await call_next(request)
 
     ip = request.client.host
-    if not is_verified(ip):
+    verifier = Verifier(redis, ip)
+    is_ip_verified = verifier.is_verified()
+    if not is_ip_verified:
         next_url = quote(str(request.url.path))
         return RedirectResponse(url=f"/pow?next={next_url}")
 
