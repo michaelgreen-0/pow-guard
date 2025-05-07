@@ -1,7 +1,7 @@
 import aiohttp
 from fastapi import Request
 from yarl import URL
-from env import BACKEND_URL
+from ..env import BACKEND_URL
 
 async def forward_request(request: Request):
     url = str(URL(BACKEND_URL).with_path(request.url.path).with_query(request.url.query))

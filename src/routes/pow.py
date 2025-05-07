@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Request, HTTPException, Depends, Query
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from services.challenger import Challenger
-from services.verifier import Verifier
-from utils.redis import get_redis
-from env import POW_DIFFICULTY
+from ..services.challenger import Challenger
+from ..services.verifier import Verifier
+from ..utils.redis import get_redis
+from ..env import POW_DIFFICULTY
 
 router = APIRouter()
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="src/templates")
 
 @router.get("/pow", response_class=HTMLResponse)
 async def get_pow(
