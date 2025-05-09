@@ -1,0 +1,23 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: python-proxy 
+    ports:
+      - 5000:5000
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    
+  mockserver: 
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.mockserver
+    container_name: mockserver
+    ports:
+      - 5001:5001
+    depends_on:
+      - app
