@@ -2,7 +2,7 @@ services:
   devcontainer: 
     build: 
       context: .. 
-      dockerfile: .devcontainer/Dockerfile 
+      dockerfile: .devcontainer/Dockerfile.dev
     container_name: devcontainer
     volumes: 
       - ..:/home/workspace
@@ -15,7 +15,7 @@ services:
   app:
     build:
       context: ..
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/Dockerfile.app
     container_name: python-proxy 
     ports:
       - 5000:5000
