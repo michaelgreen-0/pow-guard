@@ -11,4 +11,4 @@ WORKDIR /workspace
 
 COPY Pipfile Pipfile.lock ./
 
-RUN pipenv install --dev --deploy
+RUN pipenv install --dev --system
