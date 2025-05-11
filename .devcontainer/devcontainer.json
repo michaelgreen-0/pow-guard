@@ -13,7 +13,14 @@
 				"ms-python.vscode-pylance",
 				"ms-toolsai.jupyter"
 			]
+		},
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker"
+			]
 		}
 	},
-	"remoteUser": "vscode"
+	"features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    }
 }

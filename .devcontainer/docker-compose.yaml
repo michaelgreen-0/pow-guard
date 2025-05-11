@@ -5,12 +5,7 @@ services:
       dockerfile: .devcontainer/Dockerfile 
     container_name: devcontainer
     volumes: 
-      - ~/.ssh:/root/.ssh:ro 
-      - ~/.gitconfig:/root/.gitconfig:ro 
-      - /var/run/docker.sock:/var/run/docker.sock 
       - ..:/home/workspace
-    group_add:
-      - docker
     stdin_open: true
     depends_on:
       - app
