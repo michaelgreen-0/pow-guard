@@ -5,6 +5,7 @@ from ..proxy.forwarder import forward_request
 from ..services.verifier import Verifier
 from ..utils.redis import get_redis
 
+
 async def verify_pow_middleware(request: Request, call_next):
     if request.url.path.startswith("/pow") or request.url.path.startswith("/static"):
         return await call_next(request)

@@ -9,22 +9,23 @@ from ..env import POW_DIFFICULTY
 router = APIRouter()
 templates = Jinja2Templates(directory="src/templates")
 
+
 @router.get("/pow", response_class=HTMLResponse)
-async def get_pow(
-    request: Request,
-    next: str = Query("/"),
-    redis=Depends(get_redis)
-):
+async def get_pow(request: Request, next: str = Query("/"), redis=Depends(get_redis)):
     client_ip = request.client.host
     challenger = Challenger(redis, client_ip)
     challenge = challenger.generate_challenge()
     challenger.save_challenge(challenge=challenge)
-    return templates.TemplateResponse("pow.html", {
-        "request": request,
-        "challenge": challenge,
-        "difficulty": POW_DIFFICULTY,
-        "next": next
-    })
+    return templates.TemplateResponse(
+        "pow.html",
+        {
+            "request": request,
+            "challenge": challenge,
+            "difficulty": POW_DIFFICULTY,
+            "next": next,
+        },
+    )
+
 
 @router.post("/pow")
 async def submit_pow(request: Request, redis=Depends(get_redis)):

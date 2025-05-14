@@ -1,10 +1,11 @@
 import hashlib
 from redis import Redis
 
+
 class Verifier:
     def __init__(self, redis: Redis, ip: str):
         self.redis = redis
-        self.ip = ip 
+        self.ip = ip
 
     def verify_pow(self, challenge: str, solution: str, difficulty: int) -> bool:
         guess = f"{challenge}{solution}".encode()
