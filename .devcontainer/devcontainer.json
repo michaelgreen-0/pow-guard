@@ -23,11 +23,5 @@
 	"features": {
         "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
 		"ghcr.io/devcontainers/features/git:1": {}
-    },
-	"mounts": [
-		"source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
-		"source=${localEnv:HOME}/.ssh/id_rsa,target=/home/vscode/.ssh/id_rsa,type=bind,consistency=cached",
-		"source=${env:HOME}/.ssh,target=/vscode/.ssh,type=bind",
-		"source=${env:HOME}/.gitconfig,target=/vscode/.gitconfig,type=bind"
-	]
+    }
 }
