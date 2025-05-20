@@ -23,7 +23,7 @@ jobs:
       run: pip install pipenv
 
     - name: Install project dependencies
-      run: pipenv install pytest-dotenv --dev
+      run: pipenv install --dev
 
     - name: Check formatting
       run: pipenv run black --check .
