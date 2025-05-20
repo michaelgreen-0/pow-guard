@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+certifi = "==2025.4.26"
+charset-normalizer = "==3.4.2"
+idna = "==3.10"
+requests = "==2.32.3"
+simple-http-server = "==0.22.3"
+sockets = "==1.0.0"
+urllib3 = "==2.4.0"
+aiohttp = "==3.11.18"
+fastapi = "0.115.12"
+uvicorn = "*"
+python-dotenv = "*"
+redis = "*"
+jinja2 = "*"
+
+[dev-packages]
+black = "==25.1.0"
+coverage = "==7.8.0"
+pytest = "==8.3.5"
+
+[requires]
+python_version = "3.12"

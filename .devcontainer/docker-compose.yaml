@@ -1,0 +1,36 @@
+services: 
+  devcontainer: 
+    build: 
+      context: .. 
+      dockerfile: .devcontainer/Dockerfile.dev
+    container_name: devcontainer
+    volumes: 
+      - ..:/home/workspace
+    stdin_open: true
+    depends_on:
+      - app
+      - redis 
+      - mockserver
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.app
+    container_name: python-proxy 
+    ports:
+      - 5000:5000
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    
+  mockserver: 
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.mockserver
+    container_name: mockserver
+    ports:
+      - 5001:5001
+    depends_on:
+      - app

@@ -1,0 +1,27 @@
+{
+	"name": "Python Dev Container",
+	"dockerComposeFile": "docker-compose.yaml",
+	"service": "devcontainer",
+	"workspaceFolder": "/home/workspace",
+	"customizations": 
+		{
+			"extensions": 
+			{
+				"python.defaultInterpreterPath": "/workspaces/python-proxy/.venv/bin/python",
+				"vscode": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-toolsai.jupyter"
+			]
+		},
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+	"features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+		"ghcr.io/devcontainers/features/git:1": {}
+    }
+}
