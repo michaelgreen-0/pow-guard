@@ -5,6 +5,8 @@ services:
       dockerfile: .devcontainer/Dockerfile.dev
     container_name: devcontainer
     volumes: 
+      - ~/.ssh:/home/vscode/.ssh:ro
+      - ~/.gitconfig:/home/vscode/.gitconfig:ro
       - ..:/home/workspace
     stdin_open: true
     depends_on:
