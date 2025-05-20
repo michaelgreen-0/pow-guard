@@ -1,24 +1,24 @@
-services: 
-  devcontainer: 
-    build: 
-      context: .. 
+services:
+  devcontainer:
+    build:
+      context: ..
       dockerfile: .devcontainer/Dockerfile.dev
     container_name: devcontainer
-    volumes: 
+    volumes:
       - ~/.ssh:/home/vscode/.ssh:ro
       - ~/.gitconfig:/home/vscode/.gitconfig:ro
       - ..:/home/workspace
     stdin_open: true
     depends_on:
       - app
-      - redis 
+      - redis
       - mockserver
 
   app:
     build:
       context: ..
       dockerfile: docker/Dockerfile.app
-    container_name: python-proxy 
+    container_name: layer7-ddos-guard
     ports:
       - 5000:5000
     depends_on:
@@ -26,8 +26,8 @@ services:
 
   redis:
     image: redis:alpine
-    
-  mockserver: 
+
+  mockserver:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile.mockserver
