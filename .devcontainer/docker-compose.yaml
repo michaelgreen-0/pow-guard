@@ -28,7 +28,7 @@ services:
   mockserver: 
     build:
       context: ..
-      dockerfile: docker/Dockerfile.mockserver
+      dockerfile: .devcontainer/Dockerfile.mockserver
     container_name: mockserver
     ports:
       - 5001:5001
