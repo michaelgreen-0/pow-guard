@@ -1,5 +1,5 @@
 from fastapi import Request
-from fastapi.responses import RedirectResponse, JSONResponse
+from fastapi.responses import RedirectResponse, Response
 from urllib.parse import quote
 from ..proxy.forwarder import forward_request
 from ..services.verifier import Verifier
@@ -19,4 +19,7 @@ async def verify_pow_middleware(request: Request, call_next):
         return RedirectResponse(url=f"/pow?next={next_url}")
 
     status, content, headers = await forward_request(request)
-    return JSONResponse(content=content.decode(), status_code=status)
+    content_type = headers.get("content-type", "text/plain")
+    return Response(
+        content=content.decode(), status_code=status, media_type=content_type
+    )
