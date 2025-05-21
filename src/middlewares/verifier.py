@@ -19,5 +19,5 @@ async def verify_pow_middleware(request: Request, call_next):
         return RedirectResponse(url=f"/pow?next={next_url}")
 
     status, content, headers = await forward_request(request)
-    content_type = headers.get("content-type", "text/plain")
+    content_type = headers.get("content-type", "text/html")
     return Response(content=content, status_code=status, media_type=content_type)
