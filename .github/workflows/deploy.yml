@@ -22,5 +22,5 @@ jobs:
           script: |
             cd /home/user/layer7-ddos-guard
             git pull origin main
-            docker compose down
-            docker compose up -d --build
+            docker compose -f docker/docker-compose.yaml down
+            docker compose -f docker/docker-compose.yaml up -d --build

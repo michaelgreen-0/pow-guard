@@ -11,3 +11,8 @@ services:
 
   redis:
     image: redis:alpine
+
+networks:
+  default:
+    external:
+      name: docker-network
