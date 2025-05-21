@@ -20,6 +20,4 @@ async def verify_pow_middleware(request: Request, call_next):
 
     status, content, headers = await forward_request(request)
     content_type = headers.get("content-type", "text/plain")
-    return Response(
-        content=content.decode(), status_code=status, media_type=content_type
-    )
+    return Response(content=content, status_code=status, media_type=content_type)
