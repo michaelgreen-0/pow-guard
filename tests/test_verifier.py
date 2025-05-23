@@ -35,9 +35,10 @@ def test_verify_pow_failure(verifier):
 
 
 def test_mark_verified_sets_key(verifier, redis_mock):
-    redis_mock.setex.return_value = True
-    result = verifier.mark_verified(time=300)
-    redis_mock.setex.assert_called_once_with("verified:127.0.0.1", 300, "1")
+    time = 300
+    redis_mock.set.return_value = True
+    result = verifier.mark_verified(time=time)
+    redis_mock.set.assert_called_once_with("verified:127.0.0.1", "1", ex=time)
     assert result is True
 
 
