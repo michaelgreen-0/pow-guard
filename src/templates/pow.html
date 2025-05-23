@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Proof of Work</title>
 </head>
+
 <body>
     <h1>Solving PoW Challenge...</h1>
     <script>
         const powDifficulty = "{{ difficulty }}";
         const powChallenge = "{{ challenge }}";
         const nextUrl = "{{ next }}";
-    
+
         async function solvePoW(challenge, difficulty) {
             console.log("Solving challenge:", challenge, "with difficulty:", difficulty);
             let solution = 0;
@@ -26,12 +28,12 @@
                 solution++;
             }
         }
-    
+
         solvePoW(powChallenge, powDifficulty).then(solution => {
             fetch("/pow", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ solution, challenge: powChallenge, next: nextUrl })
+                body: JSON.stringify({ solution, next: nextUrl })
             }).then(res => {
                 if (res.ok) {
                     window.location.href = nextUrl;
@@ -42,4 +44,5 @@
         });
     </script>
 </body>
+
 </html>
