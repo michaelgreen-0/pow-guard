@@ -17,6 +17,7 @@ uvicorn = "*"
 python-dotenv = "*"
 redis = "*"
 jinja2 = "*"
+brotli = "*"
 
 [dev-packages]
 black = "==25.1.0"
