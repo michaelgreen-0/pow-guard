@@ -13,7 +13,7 @@ class Verifier:
         return hashed.startswith("0" * difficulty)
 
     def mark_verified(self, time: int = 300):
-        return self.redis.setex(f"verified:{self.ip}", time, "1")
+        return self.redis.set(f"verified:{self.ip}", "1", ex=time)
 
     def is_verified(self):
         return self.redis.exists(f"verified:{self.ip}")
