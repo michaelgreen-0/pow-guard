@@ -21,7 +21,7 @@ def test_generate_challenge_length_and_charset():
 
 def test_save_challenge_sets_value(challenger, redis_mock):
     challenge = "abc123XYZ"
-    time=300
+    time = 300
     challenger.save_challenge(challenge, time=time)
     redis_mock.set.assert_called_once_with("challenge:127.0.0.1", challenge, ex=time)
 
