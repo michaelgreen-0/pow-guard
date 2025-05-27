@@ -1,4 +1,4 @@
-from fastapi import Request, Depends
+from fastapi import Request
 from fastapi.responses import RedirectResponse, Response
 from urllib.parse import quote
 from ..proxy.forwarder import forward_request
