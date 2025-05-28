@@ -49,16 +49,20 @@ async def submit_pow(
         raise HTTPException(status_code=400, detail="Challenge expired or not found")
 
     solution = data.get("solution")
+    solution_set = {
+        "challenge": challenge,
+        "solution": solution,
+        "difficulty": POW_DIFFICULTY,
+    }
+
     logger.info(
         "Verifying solution against challenge",
-        extra={
-            "challenge": challenge,
-            "solution": solution,
-            "difficulty": POW_DIFFICULTY,
-        },
+        extra=solution_set,
     )
     verifier = Verifier(redis, client_ip)
+
     if not verifier.verify_pow(challenge, solution, POW_DIFFICULTY):
+        logger.info("Incorrect solution", extra=solution_set)
         raise HTTPException(status_code=403, detail="Invalid proof of work")
 
     logger.info("Solution successfully verified")
