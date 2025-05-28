@@ -44,6 +44,7 @@ async def submit_pow(
     data = await request.json()
     challenger = Challenger(redis, client_ip)
     challenge = challenger.get_challenge()
+    verifier = Verifier(redis, client_ip)
 
     if not challenge:
         raise HTTPException(status_code=400, detail="Challenge expired or not found")
@@ -59,7 +60,6 @@ async def submit_pow(
         "Verifying solution against challenge",
         extra=solution_set,
     )
-    verifier = Verifier(redis, client_ip)
 
     if not verifier.verify_pow(challenge, solution, POW_DIFFICULTY):
         logger.info("Incorrect solution", extra=solution_set)
