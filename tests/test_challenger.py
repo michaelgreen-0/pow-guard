@@ -10,7 +10,7 @@ def redis_mock():
 
 @pytest.fixture
 def challenger(redis_mock):
-    return Challenger(redis=redis_mock, ip="127.0.0.1")
+    return Challenger(redis=redis_mock, challenge_id="abc123")
 
 
 def test_generate_challenge_length_and_charset():
@@ -19,15 +19,15 @@ def test_generate_challenge_length_and_charset():
     assert all(c.isalnum() for c in challenge)
 
 
-def test_save_challenge_sets_value(challenger, redis_mock):
+def test_save_challenge_sets_value(redis_mock, challenger):
     challenge = "abc123XYZ"
     time = 300
     challenger.save_challenge(challenge, time=time)
-    redis_mock.set.assert_called_once_with("challenge:127.0.0.1", challenge, ex=time)
+    redis_mock.set.assert_called_once_with("challenge:abc123", challenge, ex=time)
 
 
-def test_get_challenge_returns_value(challenger, redis_mock):
+def test_get_challenge_returns_value(redis_mock, challenger):
     redis_mock.get.return_value = b"abc123XYZ"
     result = challenger.get_challenge()
-    redis_mock.get.assert_called_once_with("challenge:127.0.0.1")
+    redis_mock.get.assert_called_once_with("challenge:abc123")
     assert result == b"abc123XYZ"

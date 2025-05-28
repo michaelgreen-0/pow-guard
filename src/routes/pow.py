@@ -1,3 +1,4 @@
+import uuid
 from fastapi import APIRouter, Request, HTTPException, Depends, Query
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -19,15 +20,18 @@ async def get_pow(
     logger: Logger = Depends(),
 ):
     logger.info("Received GET request")
-    client_ip = request.client.host
-    challenger = Challenger(redis, client_ip)
+
+    challenge_id = str(uuid.uuid4())
+    challenger = Challenger(redis, challenge_id)
     challenge = challenger.generate_challenge()
-    challenger.save_challenge(challenge=challenge)
+    challenger.save_challenge(challenge)
     logger.info("Generated and saved challenge", extra={"challenge": challenge})
+
     return templates.TemplateResponse(
         "pow.html",
         {
             "request": request,
+            "challenge_id": challenge_id,
             "challenge": challenge,
             "difficulty": POW_DIFFICULTY,
             "next": next,
@@ -40,17 +44,19 @@ async def submit_pow(
     request: Request, redis=Depends(get_redis), logger: Logger = Depends()
 ):
     logger.info("Client sent POST request to verify challenge")
-    client_ip = request.client.host
     data = await request.json()
-    challenger = Challenger(redis, client_ip)
+    challenge_id = data.get("challenge_id")
+    solution = data.get("solution")
+
+    challenger = Challenger(redis, challenge_id)
     challenge = challenger.get_challenge()
-    verifier = Verifier(redis, client_ip)
+    verifier = Verifier(redis, challenge_id)
 
     if not challenge:
         raise HTTPException(status_code=400, detail="Challenge expired or not found")
 
-    solution = data.get("solution")
     solution_set = {
+        "challenge_id": challenge_id,
         "challenge": challenge,
         "solution": solution,
         "difficulty": POW_DIFFICULTY,

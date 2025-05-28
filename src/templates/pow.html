@@ -9,11 +9,13 @@
     <h1>Solving PoW Challenge...</h1>
     <script>
         const powDifficulty = "{{ difficulty }}";
+        const powChallengeID = "{{ challenge_id }}"
         const powChallenge = "{{ challenge }}";
         const nextUrl = "{{ next }}";
 
         async function solvePoW(challenge, difficulty) {
-            console.log("Solving challenge:", challenge, "with difficulty:", difficulty);
+            console.log(`Challenge received with ID: ${powChallengeID}`)
+            console.log(`Solving challenge: ${challenge}, with difficulty: ${difficulty}`);
             let solution = 0;
             while (true) {
                 const encoder = new TextEncoder();
@@ -22,7 +24,7 @@
                 const hashArray = Array.from(new Uint8Array(hashBuffer));
                 const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
                 if (hashHex.startsWith("0".repeat(difficulty))) {
-                    console.log(`Solved! Nonce: ${solution}, Hash: ${hashHex}`);
+                    console.log(`Solved! Challenge ID: ${powChallengeID}, Nonce: ${solution}, Hash: ${hashHex}`);
                     return solution.toString();
                 }
                 solution++;
@@ -33,7 +35,11 @@
             fetch("/pow", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ solution, next: nextUrl })
+                body: JSON.stringify({
+                    challenge_id: powChallengeID,
+                    solution: solution,
+                    next: nextUrl
+                })
             }).then(res => {
                 if (res.ok) {
                     window.location.href = nextUrl;

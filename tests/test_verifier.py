@@ -11,7 +11,7 @@ def redis_mock():
 
 @pytest.fixture
 def verifier(redis_mock):
-    return Verifier(redis=redis_mock, ip="127.0.0.1")
+    return Verifier(redis=redis_mock, challenge_id="abc123")
 
 
 def test_verify_pow_success(verifier):
@@ -38,17 +38,17 @@ def test_mark_verified_sets_key(verifier, redis_mock):
     time = 300
     redis_mock.set.return_value = True
     result = verifier.mark_verified(time=time)
-    redis_mock.set.assert_called_once_with("verified:127.0.0.1", "1", ex=time)
+    redis_mock.set.assert_called_once_with("verified:abc123", "1", ex=time)
     assert result is True
 
 
 def test_is_verified_true(verifier, redis_mock):
     redis_mock.exists.return_value = True
     assert verifier.is_verified() is True
-    redis_mock.exists.assert_called_once_with("verified:127.0.0.1")
+    redis_mock.exists.assert_called_once_with("verified:abc123")
 
 
 def test_is_verified_false(verifier, redis_mock):
     redis_mock.exists.return_value = False
     assert verifier.is_verified() is False
-    redis_mock.exists.assert_called_once_with("verified:127.0.0.1")
+    redis_mock.exists.assert_called_once_with("verified:abc123")
