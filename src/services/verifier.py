@@ -7,7 +7,8 @@ class Verifier:
         self.redis = redis
         self.ip = ip
 
-    def verify_pow(self, challenge: str, solution: str, difficulty: int) -> bool:
+    @staticmethod
+    def verify_pow(challenge: str, solution: str, difficulty: int) -> bool:
         guess = f"{challenge}{solution}".encode()
         hashed = hashlib.sha256(guess).hexdigest()
         return hashed.startswith("0" * difficulty)
