@@ -23,12 +23,12 @@ async def router_middleware(request: Request, call_next):
         return await call_next(request)
 
     logger.info("Request does not start with pow or static")
-    redis = get_redis()
 
+    # Check cookie for verification
+    redis = get_redis()
     session_token = request.cookies.get("pow_session_token")
     session_verifier = Verifier(redis, session_token)
-
-    if not session_verifier.is_verified():
+    if session_token is None or not session_verifier.is_verified():
         logger.info("Not verified. Redirecting to pow service.")
         next_url = quote(str(request.url.path))
         return RedirectResponse(url=f"/pow?next={next_url}")
