@@ -1,6 +1,6 @@
 import uuid
 from fastapi import APIRouter, Request, HTTPException, Depends, Query
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from ..services.challenger import Challenger
 from ..services.verifier import Verifier
@@ -73,4 +73,20 @@ async def submit_pow(
 
     logger.info("Solution successfully verified")
     verifier.mark_verified()
-    return {"status": "verified"}
+
+    response = JSONResponse(content={"status": "verified"})
+
+    # Setup cookie for session (abstract this out later)
+    session_token = uuid.uuid4().hex
+    redis_key_sesion_token = f"verified:{session_token}"
+    redis.set(redis_key_sesion_token, "1", ex=300)
+
+    response.set_cookie(
+        key="pow_session_token",
+        value=session_token,
+        max_age=300,
+        httponly=True,
+        secure=request.url.scheme == "https",
+        samesite="Lax",
+    )
+    return response

@@ -24,17 +24,18 @@ async def router_middleware(request: Request, call_next):
 
     logger.info("Request does not start with pow or static")
     redis = get_redis()
-    ip = request.client.host
-    verifier = Verifier(redis, ip)
 
-    if not verifier.is_verified():
-        logger.info("IP is not verified. Redirecting to pow service.")
+    session_token = request.cookies.get("pow_session_token")
+    session_verifier = Verifier(redis, session_token)
+
+    if not session_verifier.is_verified():
+        logger.info("Not verified. Redirecting to pow service.")
         next_url = quote(str(request.url.path))
         return RedirectResponse(url=f"/pow?next={next_url}")
 
     # NOTE: Headers aren't pulled through. Maybe later we can pull them all through
     # Ran into content length issues with compression...
-    logger.info("IP is verified. Proxying to service.")
+    logger.info("Verified. Proxying to service.")
     status, content, headers = await forward_request(request)
     content_type = headers.get("content-type")
     return Response(content=content, status_code=status, media_type=content_type)

@@ -3,9 +3,9 @@ from redis import Redis
 
 
 class Verifier:
-    def __init__(self, redis: Redis, challenge_id: str):
+    def __init__(self, redis: Redis, event_key: str):
         self.redis = redis
-        self.challenge_id = challenge_id
+        self.event_key = event_key
 
     @staticmethod
     def verify_pow(challenge: str, solution: str, difficulty: int) -> bool:
@@ -14,7 +14,7 @@ class Verifier:
         return hashed.startswith("0" * difficulty)
 
     def mark_verified(self, time: int = 300):
-        return self.redis.set(f"verified:{self.challenge_id}", "1", ex=time)
+        return self.redis.set(f"verified:{self.event_key}", "1", ex=time)
 
     def is_verified(self):
-        return self.redis.exists(f"verified:{self.challenge_id}")
+        return self.redis.exists(f"verified:{self.event_key}")

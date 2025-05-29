@@ -11,7 +11,7 @@ def redis_mock():
 
 @pytest.fixture
 def verifier(redis_mock):
-    return Verifier(redis=redis_mock, challenge_id="abc123")
+    return Verifier(redis=redis_mock, event_key="abc123")
 
 
 def test_verify_pow_success(verifier):
