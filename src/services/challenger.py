@@ -1,11 +1,11 @@
 import random
 import string
-from redis import Redis
+from ..utils.redis import get_redis
 
 
 class Challenger:
-    def __init__(self, redis: Redis, challenge_id: str):
-        self.redis = redis
+    def __init__(self, challenge_id: str):
+        self.redis = get_redis()
         self.challenge_id = challenge_id
 
     @staticmethod

@@ -16,13 +16,12 @@ templates = Jinja2Templates(directory="src/templates")
 async def get_pow(
     request: Request,
     next: str = Query("/"),
-    redis=Depends(get_redis),
     logger: Logger = Depends(),
 ):
     logger.info("Received GET request")
 
     challenge_id = str(uuid.uuid4())
-    challenger = Challenger(redis, challenge_id)
+    challenger = Challenger(challenge_id)
     challenge = challenger.generate_challenge()
     challenger.save_challenge(challenge)
     logger.info("Generated and saved challenge", extra={"challenge": challenge})
@@ -40,17 +39,15 @@ async def get_pow(
 
 
 @router.post("/pow")
-async def submit_pow(
-    request: Request, redis=Depends(get_redis), logger: Logger = Depends()
-):
+async def submit_pow(request: Request, logger: Logger = Depends()):
     logger.info("Client sent POST request to verify challenge")
     data = await request.json()
     challenge_id = data.get("challenge_id")
     solution = data.get("solution")
 
-    challenger = Challenger(redis, challenge_id)
+    challenger = Challenger(challenge_id)
     challenge = challenger.get_challenge()
-    verifier = Verifier(redis, challenge_id)
+    challenge_verifier = Verifier(challenge_id)
 
     if not challenge:
         raise HTTPException(status_code=400, detail="Challenge expired or not found")
@@ -67,19 +64,19 @@ async def submit_pow(
         extra=solution_set,
     )
 
-    if not verifier.verify_pow(challenge, solution, POW_DIFFICULTY):
+    if not challenge_verifier.verify_pow(challenge, solution, POW_DIFFICULTY):
         logger.info("Incorrect solution", extra=solution_set)
         raise HTTPException(status_code=403, detail="Invalid proof of work")
 
     logger.info("Solution successfully verified")
-    verifier.mark_verified()
+    challenge_verifier.mark_verified()
 
     response = JSONResponse(content={"status": "verified"})
 
     # Setup cookie for session (abstract this out later)
     session_token = uuid.uuid4().hex
-    redis_key_sesion_token = f"verified:{session_token}"
-    redis.set(redis_key_sesion_token, "1", ex=300)
+    session_verifier = Verifier(session_token)
+    session_verifier.mark_verified()
 
     response.set_cookie(
         key="pow_session_token",

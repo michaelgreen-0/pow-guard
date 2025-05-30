@@ -1,10 +1,10 @@
 import hashlib
-from redis import Redis
+from ..utils.redis import get_redis
 
 
 class Verifier:
-    def __init__(self, redis: Redis, event_key: str):
-        self.redis = redis
+    def __init__(self, event_key: str):
+        self.redis = get_redis()
         self.event_key = event_key
 
     @staticmethod
