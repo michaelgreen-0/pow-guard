@@ -7,11 +7,13 @@ class TestChallenger:
 
     @pytest.fixture
     def fake_redis(self):
-        return fakeredis.FakeRedis()
+        redis_client = fakeredis.FakeRedis()
+        redis_client.flushdb()
+        return redis_client
 
     @pytest.fixture
     def challenger_instance(self, mocker, fake_redis):
-        mocker.patch("src.utils.redis.get_redis", return_value=fake_redis)
+        mocker.patch("src.services.challenger.get_redis", return_value=fake_redis)
         return Challenger(challenge_id="123_challenge_id")
 
     def test_generate_challenge(self):
