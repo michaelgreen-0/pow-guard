@@ -7,7 +7,7 @@ class TestChallenger:
 
     @pytest.fixture
     def fake_redis(self):
-        redis_client = fakeredis.FakeRedis()
+        redis_client = fakeredis.FakeRedis(decode_responses=True)
         redis_client.flushdb()
         return redis_client
 
