@@ -3,15 +3,110 @@
 
 <head>
     <title>Proof of Work</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .pow-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .pow-container h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .details p {
+            margin: 8px 0;
+            font-size: 0.9em;
+            color: #555;
+            word-break: break-all;
+        }
+        .details p span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px auto;
+            height: 50px;
+        }
+
+        .loading-dots span {
+            width: 10px;
+            height: 10px;
+            margin: 0 4px;
+            background-color: #3498db;
+            border-radius: 50%;
+            opacity: 0;
+            animation: single-dot-highlight 1.2s infinite;
+        }
+
+        .loading-dots span:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.4s; /* 1.2s total / 3 dots */
+        }
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes single-dot-highlight {
+            0% { opacity: 1; }    /* Visible for the first third of its cycle */
+            33.33% { opacity: 1; } /* Hidden for the remaining two thirds */
+            100% { opacity: 0; }
+        }
+
+        #status-text {
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Solving PoW Challenge...</h1>
+    <div class="pow-container">
+        <img src="static/images/shield.svg" width="128" height="128">
+        <h1>Proof-of-Work Challenge</h1>
+        <div class="info">
+            <p><strong>Challenge ID:</strong> <span id="challengeIdDisplay"></span></p>
+            <p><strong>Challenge:</strong> <span id="challengeDisplay"></span></p>
+            <p><strong>Difficulty:</strong> <span id="difficultyDisplay"></span></p>
+        </div>
+        <div class="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <p id="status-text">Solving, please wait...</p>
+    </div>
+
     <script>
         const powDifficulty = "{{ difficulty }}";
-        const powChallengeID = "{{ challenge_id }}"
+        const powChallengeID = "{{ challenge_id }}";
         const powChallenge = "{{ challenge }}";
         const nextUrl = "{{ next }}";
+
+        document.getElementById("challengeIdDisplay").textContent = powChallengeID;
+        document.getElementById("challengeDisplay").textContent = powChallenge;
+        document.getElementById("difficultyDisplay").textContent = powDifficulty;
 
         async function solvePoW(challenge, difficulty) {
             console.log(`Challenge received with ID: ${powChallengeID}`)
@@ -31,7 +126,7 @@
             }
         }
 
-        solvePoW(powChallenge, powDifficulty).then(solution => {
+        solvePoW(powChallenge, parseInt(powDifficulty)).then(solution => { // Ensure difficulty is an integer
             fetch("/pow", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -46,7 +141,13 @@
                 } else {
                     document.body.innerHTML = "<h2>Verification failed. Try refreshing.</h2>";
                 }
+            }).catch(error => {
+                console.error("Error submitting PoW solution:", error);
+                document.body.innerHTML = "<h2>Error submitting solution. Check console.</h2>";
             });
+        }).catch(error => {
+            console.error("Error solving PoW:", error);
+            document.body.innerHTML = "<h2>Error solving PoW. Check console.</h2>";
         });
     </script>
 </body>
