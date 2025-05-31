@@ -1,26 +1,26 @@
+![image](https://github.com/user-attachments/assets/822c973e-a4c2-4da8-b818-ac3b7bcff9e1)
+
 # Layer 7 DDoS Guard
 
 This service sits between the client and server as a means of preventing DDoS attacks that act on the application layer.
 
 ## Description
 
-As the service deems there to be excessive traffic, clients will be required to solve a proof-of-work problem. On an individual level, this will not be noticeable to a normal user. However, in cases of a botnet, the computational power required to maintain an attack dimishes quickly as the proof-of-work difficulty increases.
+For infrastructure that requires protection, _Layer 7 DDoS Guard_ sits as a service between the client and the given server. The service provides clients with a proof-of-work problem which must be solved before being allowed through via proxy.
 
-This is often preferable over conventional anti-DDoS measures like requiring the user to solve a CAPTCHA. This does not require human intervention and instead acts purely on the limitation of computational power of the attackers. CAPTCHA's are also increasingly vulnerable to attacks by bots as AI/ML models become increasingly powerful.
+For given actors carrying out denial-of-service attacks, the computational power (and therefore cost) outweighs the gain of taking down the underlying infrastructure.
 
-## Getting Started
+This is in contrast to conventional anti-DDoS measures like CAPTCHA problems. Firstly, this does not require human intervention and instead acts purely on the limitation of computational power of the attackers. CAPTCHA's are also increasingly vulnerable to attacks by bots as AI/ML models become increasingly powerful, making them easy to circumvent with computer-vision techniques.
 
-### Dependencies
+## How it Works
+TBC
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+## Configuration
 
-### Installing
+Create a .env from the .env.default file and copy your given variables.
+{{ INSERT ENV VARIABLES TABLE }}
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-
-### Executing program
+## Deployment
 
 * How to run the program
 * Step-by-step bullets
