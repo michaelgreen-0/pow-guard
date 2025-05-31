@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/822c973e-a4c2-4da8-b818-ac3b7bcff9e1)
+![image](https://github.com/user-attachments/assets/672e885d-ffce-419a-984b-4bbdbfdb7e58)
 
 # Layer 7 DDoS Guard
 
