@@ -4,8 +4,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from ..services.challenger import Challenger
 from ..services.verifier import Verifier
-from ..utils.redis import get_redis
-from ..env import POW_DIFFICULTY
+from ..env import POW_DIFFICULTY, COOKIE_LIFETIME, CHALLENGE_LIFETIME
 from ..logger import Logger
 
 router = APIRouter()
@@ -23,7 +22,7 @@ async def get_pow(
     challenge_id = str(uuid.uuid4())
     challenger = Challenger(challenge_id)
     challenge = challenger.generate_challenge()
-    challenger.save_challenge(challenge)
+    challenger.save_challenge(challenge, time=CHALLENGE_LIFETIME)
     logger.info("Generated and saved challenge", extra={"challenge": challenge})
 
     return templates.TemplateResponse(
@@ -69,19 +68,19 @@ async def submit_pow(request: Request, logger: Logger = Depends()):
         raise HTTPException(status_code=403, detail="Invalid proof of work")
 
     logger.info("Solution successfully verified")
-    challenge_verifier.mark_verified()
+    challenge_verifier.mark_verified(time=CHALLENGE_LIFETIME)
 
     response = JSONResponse(content={"status": "verified"})
 
     # Setup cookie for session (abstract this out later)
     session_token = uuid.uuid4().hex
     session_verifier = Verifier(session_token)
-    session_verifier.mark_verified()
+    session_verifier.mark_verified(time=COOKIE_LIFETIME)
 
     response.set_cookie(
         key="pow_session_token",
         value=session_token,
-        max_age=300,
+        max_age=COOKIE_LIFETIME,
         httponly=True,
         secure=request.url.scheme == "https",
         samesite="Lax",
