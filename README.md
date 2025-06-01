@@ -28,7 +28,7 @@ The problem is defined with a challenge and an associated difficulty "D". Where 
 
 E.g. For a challenge *NPO8DyMd8u85ssgK* with a difficulty 5. The client would increment a nonce by 1 until the SHA256-produced hash started with 5 zeros. E.g.  NPO8DyMd8u85ssgK0, NPO8DyMd8u85ssgK1, NPO8DyMd8u85ssgK2 ... The client would then reach NPO8DyMd8u85ssgK1066074 which happens to produce a hash 000003e7cc8... Once *Layer 7 DDoS Guard* verifies that this solution works, then the client is a given a verification cookie and is then proxied through to the desired service.
 
-![Proof of work problem diagram](https://github.com/michaelgreen-0/layer7-ddos-guard/blob/main/docs/proof-of-work-problem.png?raw=true)
+![image](https://github.com/user-attachments/assets/5813a94f-5e91-4c9b-8293-8c7cab6bf460)
 
 A quad core i7-8650U @ 1.90GHz solves a problem with difficulty 5 in approximately 5 seconds. With a difficulty of 6 this increases to 2 to 3 minutes.
 
