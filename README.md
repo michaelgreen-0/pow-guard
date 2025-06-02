@@ -1,3 +1,4 @@
+
 ![image](https://github.com/user-attachments/assets/672e885d-ffce-419a-984b-4bbdbfdb7e58)
 
 # Layer 7 DDoS Guard
@@ -49,7 +50,7 @@ Create a .env from the .env.default file and fill in your given variables.
 
 The above default environment variables (BACKEND_URL and REDIS_HOST) make use of docker networks through a docker-compose setup. Check out the *docker/docker-compose.yaml* file. This is ideal for testing and/or simple setups.
 
-Depending on your use-case it may be recommended to use separate servers for your backend service and the *Layer 7 DDoS Guard*. Your backend URL and Redis setup would then need to be updated accordingly. This is scenario dependent and depends on your threat vectors.
+Depending on your use-case it may be recommended to use separate servers for your backend service and the *Layer 7 DDoS Guard*. Your backend URL and Redis setup would then need to be updated accordingly. This is scenario dependent and depends on your threat vectors. See *support* below.
 
 ## Deployment
 As above, your setup will vary depending on your scenario. The following goes through a simple docker compose setup.
@@ -58,6 +59,13 @@ As above, your setup will vary depending on your scenario. The following goes th
  - Setup your reverse proxy (Nginx in my case) to point to your localhost port 5000. If you want to use a different port then make sure this is reflected in Dockerfile.app and the docker-compose file.
  - Running `docker compose -f docker/docker-compose.yaml up -d --build` will then start Redis and *Layer 7 DDoS Guard* together.
  - Navigate to your protected service either locally or through the internet and you will be taken to the pow page for verification.
+
+## Support
+Talk to me via [email](mailto:m_green@hotmail.co.nz) or [LinkedIn](https://www.linkedin.com/in/michael-green-fraud/).
+
+There are customisations which I recommend for production-ready systems. Including auto-scaling the difficulty and other smarts around the difficulty of the problem. If you need a hand with deployment then let me know and we can chat about how to incorporate this into your stack.
+
+Demo requests are welcome.
 
 ## License
 
