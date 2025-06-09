@@ -5,7 +5,7 @@
 	"workspaceFolder": "/home/workspace",
 	"customizations": {
 		"extensions": {
-			"python.defaultInterpreterPath": "/workspaces/layer7-ddos-guard/.venv/bin/python",
+			"python.defaultInterpreterPath": "/workspaces/pow-guard/.venv/bin/python",
 			"vscode": [
 				"ms-python.python",
 				"ms-python.vscode-pylance",
