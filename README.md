@@ -1,5 +1,6 @@
-
-![image](https://github.com/user-attachments/assets/672e885d-ffce-419a-984b-4bbdbfdb7e58)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/df7917db-7ec6-4580-9e13-3e609f611b99" />
+</p>
 
 # PoW Guard
 
