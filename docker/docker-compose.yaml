@@ -1,9 +1,9 @@
 services:
-  layer7-ddos-guard:
+  pow-guard:
     build:
       context: ..
       dockerfile: docker/Dockerfile.app
-    container_name: layer7-ddos-guard
+    container_name: pow-guard
     ports:
       - 5000:5000
     depends_on:

@@ -25,7 +25,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /home/user/layer7-ddos-guard
+            cd /home/user/pow-guard
             git pull origin main
             docker compose -f docker/docker-compose.yaml down
             docker compose -f docker/docker-compose.yaml up -d --build
