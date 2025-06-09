@@ -50,7 +50,7 @@ Create a .env from the .env.default file and fill in your given variables.
 
 The above default environment variables (BACKEND_URL and REDIS_HOST) make use of docker networks through a docker-compose setup. Check out the *docker/docker-compose.yaml* file. This is ideal for testing and/or simple setups.
 
-Depending on your use-case it may be recommended to use separate servers for your backend service and the *PoW Guard*. Your backend URL and Redis setup would then need to be updated accordingly. This is scenario dependent and depends on your threat vectors. See *support* below.
+Depending on your use-case it may be recommended to use separate servers for your backend service and the *PoW Guard*. Your backend URL and Redis setup would then need to be updated accordingly. This is scenario dependent and depends on your threat vectors. See [support](#support) below.
 
 ## Deployment
 As above, your setup will vary depending on your scenario. The following goes through a simple docker compose setup.
