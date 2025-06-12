@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "63dbbd45e9ec3e854d2e4ab6baa91176f1545d80569030d361a3dab129424cac"
+            "sha256": "3e0aacdd85bf5718b9a11c3fa438d8ed0749f6884d069fa88a190f513b990789"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1261,6 +1261,15 @@
             "markers": "python_version >= '3.7' and python_version < '4.0'",
             "version": "==2.29.0"
         },
+        "freezegun": {
+            "hashes": [
+                "sha256:5aaf3ba229cda57afab5bd311f0108d86b6fb119ae89d2cd9c43ec8c1733c85b",
+                "sha256:a54ae1d2f9c02dbf42e02c18a3ab95ab4295818b549a34dac55592d72a905181"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==1.5.2"
+        },
         "iniconfig": {
             "hashes": [
                 "sha256:3abbd2e30b36733fee78f9c7f7308f2d0050e88f0087fd25c2645f63c773e1c7",
@@ -1336,6 +1345,14 @@
             "markers": "python_version >= '3.8'",
             "version": "==3.14.1"
         },
+        "python-dateutil": {
+            "hashes": [
+                "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3",
+                "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "version": "==2.9.0.post0"
+        },
         "redis": {
             "hashes": [
                 "sha256:5446780d2425b787ed89c91ddbfa1be6d32370a636c8fdb687f11b1c26c1fa88",
@@ -1344,6 +1361,14 @@
             "index": "pypi",
             "markers": "python_version >= '3.8'",
             "version": "==6.0.0"
+        },
+        "six": {
+            "hashes": [
+                "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+                "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "version": "==1.17.0"
         },
         "sortedcontainers": {
             "hashes": [
