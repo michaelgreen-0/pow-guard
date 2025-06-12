@@ -16,7 +16,7 @@ class TestVerifier:
     @pytest.fixture
     def verifier_instance(self, mocker, fake_redis):
         mocker.patch("src.services.verifier.get_redis", return_value=fake_redis)
-        return Verifier(event_key="123_sesion_cookie")
+        return Verifier(event_key="123_session_cookie")
 
     @pytest.mark.parametrize(
         "challenge, solution, difficulty, expected_verification",
