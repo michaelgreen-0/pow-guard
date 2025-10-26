@@ -6,8 +6,6 @@
 
 This service sits between the client and server as a means of preventing DDoS attacks that act on the application layer.
 
-See it in action at [gQatsi.com](https://gQatsi.com)
-
 ## Description
 
 For infrastructure that requires protection, _PoW Guard_ sits as a service between the client and the given server. The service provides clients with a proof-of-work problem which must be solved before being allowed through via proxy.
