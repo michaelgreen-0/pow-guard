@@ -25,7 +25,7 @@ typing-extensions = "==4.14.1"
 [dev-packages]
 black = "==26.3.1"
 coverage = "==7.8.0"
-pytest = "==8.3.5"
+pytest = "==9.0.3"
 pytest-env = "==1.1.5"
 fakeredis = "==2.29.0"
 pytest-mock = "==3.14.1"
