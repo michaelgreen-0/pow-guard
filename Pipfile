@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 certifi = "==2025.4.26"
 charset-normalizer = "==3.4.2"
-idna = "==3.10"
+idna = "==3.15"
 requests = "==2.33.0"
 simple-http-server = "==0.22.3"
 sockets = "==1.0.0"
