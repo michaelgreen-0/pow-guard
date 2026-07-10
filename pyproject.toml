@@ -1,0 +1,38 @@
+[project]
+name = "pow-guard"
+version = "0.1.0"
+description = "Proof-of-work guard"
+requires-python = ">=3.12"
+dependencies = [
+    "certifi==2025.4.26",
+    "charset-normalizer==3.4.2",
+    "idna==3.15",
+    "requests==2.33.0",
+    "simple-http-server==0.22.3",
+    "sockets==1.0.0",
+    "urllib3==2.7.0",
+    "aiohttp==3.13.4",
+    "fastapi==0.120.4",
+    "uvicorn==0.34.2",
+    "python-dotenv==1.2.2",
+    "redis==6.0.0",
+    "jinja2==3.1.6",
+    "brotli==1.2.0",
+    "python-json-logger==3.3.0",
+    "starlette==0.49.1",
+    "typing-extensions==4.14.1",
+]
+
+[dependency-groups]
+dev = [
+    "black==26.3.1",
+    "coverage==7.8.0",
+    "pytest==8.3.5",
+    "pytest-env==1.1.5",
+    "fakeredis==2.29.0",
+    "pytest-mock==3.14.1",
+    "freezegun==1.5.2",
+]
+
+[tool.uv]
+package = false

@@ -12,21 +12,18 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
       with:
-        python-version: '3.13' 
-
-    - name: Install Pipenv
-      run: pip install pipenv
+        python-version: '3.13'
 
     - name: Install project dependencies
-      run: pipenv install --dev
+      run: uv sync --frozen
 
     - name: Check formatting
-      run: pipenv run black --check .
+      run: uv run black --check .
 
     - name: Run tests with pytest
-      run: pipenv run pytest -c pytest.ini tests/*.py
+      run: uv run pytest -c pytest.ini tests/*.py

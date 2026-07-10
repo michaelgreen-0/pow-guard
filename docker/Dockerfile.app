@@ -1,11 +1,13 @@
-FROM python:3.12-slim
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
-RUN pip install pipenv
+WORKDIR /code
 
-WORKDIR /code 
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    PATH="/code/.venv/bin:$PATH"
 
-COPY ./Pipfile ./Pipfile.lock ./
-RUN pipenv install --system --deploy
+COPY ./pyproject.toml ./uv.lock ./
+RUN uv sync --frozen --no-dev
 
 COPY .env ./
 COPY ./src ./src
