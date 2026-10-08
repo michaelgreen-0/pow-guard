@@ -11,7 +11,7 @@ dependencies = [
     "simple-http-server==0.22.3",
     "sockets==1.0.0",
     "urllib3==2.8.0",
-    "aiohttp==3.14.3",
+    "aiohttp==3.14.4",
     "fastapi==0.142.2",
     "uvicorn==0.54.0",
     "python-dotenv==1.2.4",
