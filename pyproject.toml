@@ -12,7 +12,7 @@ dependencies = [
     "sockets==1.0.0",
     "urllib3==2.8.0",
     "aiohttp==3.14.4",
-    "fastapi==0.142.2",
+    "fastapi==0.143.0",
     "uvicorn==0.54.0",
     "python-dotenv==1.2.4",
     "redis==8.1.0",
@@ -25,10 +25,10 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "black==26.10.0",
+    "black==26.10.1",
     "coverage==7.16.2",
     "pytest==9.1.1",
-    "pytest-env==1.7.1",
+    "pytest-env==1.8.0",
     "fakeredis==2.39.0",
     "pytest-mock==3.16.0",
     "freezegun==1.5.5",
