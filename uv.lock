@@ -278,11 +278,11 @@ wheels = [
 
 [[package]]
 name = "certifi"
-version = "2026.7.22"
+version = "2026.10.18"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a3/c2/24167ea9858356b47a87a50d39908bfdb72ceeefe0041586e704e5376b3a/certifi-2026.7.22.tar.gz", hash = "sha256:741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55", size = 138112, upload-time = "2026-07-22T03:35:12.644Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7e/eb/a2aa1ac3ea30dd3f30ca57f40232138b6b0040719316ecb85daf61167771/certifi-2026.10.18.tar.gz", hash = "sha256:b9995d97b64d0431a5af837d8ca8cd6238104d1f319f04bd93ea43124d6c861e", size = 135227, upload-time = "2026-10-18T16:21:07.655Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl", hash = "sha256:62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775", size = 136983, upload-time = "2026-07-22T03:35:11.276Z" },
+    { url = "https://files.pythonhosted.org/packages/08/ba/95dd616042484f7c83a06974388b37b837732740ee70bc5dc715b5fcd55a/certifi-2026.10.18-py3-none-any.whl", hash = "sha256:73191c47aaa79da394e8fee2dbc2ec827432cab56311122c9e47abf79e390f62", size = 134093, upload-time = "2026-10-18T16:21:06.276Z" },
 ]
 
 [[package]]
@@ -551,7 +551,7 @@ wheels = [
 
 [[package]]
 name = "fastapi"
-version = "0.143.3"
+version = "0.146.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "annotated-doc" },
@@ -561,9 +561,9 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "typing-inspection" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/38/d5/b0aeb0b303650ac87b0411de4aaf3f901b06042dcc3fb00f30b97b7ff585/fastapi-0.143.3.tar.gz", hash = "sha256:b9ab567ee57afb4454004ce04c889f8f0160ac47946b99795887cd6e88484848", size = 469834, upload-time = "2026-10-16T14:14:13.31Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/cd/5b/f3b4277844c3ce66c16f62670cd2a26236489aa97115d04182171ce714a9/fastapi-0.146.0.tar.gz", hash = "sha256:e96047fc353ff43f7fda069c3578a7d94902a762d9aca2e065f7f801abd91a49", size = 471622, upload-time = "2026-10-18T15:19:30.538Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2c/1a/03d246befcf307219bb2161c97d8c5d314f84125bf7dd245730a28589828/fastapi-0.143.3-py3-none-any.whl", hash = "sha256:75e8bd68e2f52f77d29b2879749c257d64de2d85282d25270caf2bfccce5efe5", size = 144849, upload-time = "2026-10-16T14:14:11.763Z" },
+    { url = "https://files.pythonhosted.org/packages/eb/7d/f96d4bd930d52f299583ea55266990480ec0db46d2c498df716a98474e87/fastapi-0.146.0-py3-none-any.whl", hash = "sha256:0eb9985a7d5bb11ce9a962d4b65e0cf1a2e13d6aca2e14da57bc526370e26748", size = 144702, upload-time = "2026-10-18T15:19:29.059Z" },
 ]
 
 [[package]]
@@ -1003,9 +1003,9 @@ dev = [
 requires-dist = [
     { name = "aiohttp", specifier = "==3.14.5" },
     { name = "brotli", specifier = "==1.2.0" },
-    { name = "certifi", specifier = "==2026.7.22" },
+    { name = "certifi", specifier = "==2026.10.18" },
     { name = "charset-normalizer", specifier = "==3.5.2" },
-    { name = "fastapi", specifier = "==0.143.3" },
+    { name = "fastapi", specifier = "==0.146.0" },
     { name = "idna", specifier = "==3.20" },
     { name = "jinja2", specifier = "==3.1.6" },
     { name = "python-dotenv", specifier = "==1.2.4" },
@@ -1014,7 +1014,7 @@ requires-dist = [
     { name = "requests", specifier = "==2.34.2" },
     { name = "simple-http-server", specifier = "==0.22.3" },
     { name = "sockets", specifier = "==1.0.0" },
-    { name = "starlette", specifier = "==1.8.0" },
+    { name = "starlette", specifier = "==1.9.0" },
     { name = "typing-extensions", specifier = "==4.16.0" },
     { name = "urllib3", specifier = "==2.8.0" },
     { name = "uvicorn", specifier = "==0.54.0" },
@@ -1027,7 +1027,7 @@ dev = [
     { name = "fakeredis", specifier = "==2.40.0" },
     { name = "freezegun", specifier = "==1.5.5" },
     { name = "pytest", specifier = "==9.1.1" },
-    { name = "pytest-env", specifier = "==1.8.0" },
+    { name = "pytest-env", specifier = "==1.8.1" },
     { name = "pytest-mock", specifier = "==3.17.0" },
 ]
 
@@ -1242,15 +1242,15 @@ wheels = [
 
 [[package]]
 name = "pytest-env"
-version = "1.8.0"
+version = "1.8.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pytest" },
     { name = "python-dotenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/19/e5/02fb78ca59d456291135b48fc95ee481a6e55dc47ad53e6cee31a7e40d54/pytest_env-1.8.0.tar.gz", hash = "sha256:e2dd383be15823a875403509949c0d975266f4f1711ccfbdcdbcbcf8fa83097c", size = 17363, upload-time = "2026-10-10T22:49:40.747Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0e/36/ccea73f55f269dc15c17ffb85d86beab7602bd7712f509300ef0d6bb937a/pytest_env-1.8.1.tar.gz", hash = "sha256:996f86ad78b6c7b5335e0d493f9e9ecd3e421174e056742856f91da439e1cbd9", size = 17852, upload-time = "2026-10-18T06:54:41.736Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8a/cd/c592fb78f8d5fc456568faf1983f2b994f00aa1690f0b3b24af95ad75121/pytest_env-1.8.0-py3-none-any.whl", hash = "sha256:43a026236949342be217f1539fa7ef32973f0d3a98d79d86a15eee973d3b1a2a", size = 10385, upload-time = "2026-10-10T22:49:39.251Z" },
+    { url = "https://files.pythonhosted.org/packages/8a/7d/d02c020f0daff882c9115c3c0381b8fac386570ef08c10d648a1a6fdf89e/pytest_env-1.8.1-py3-none-any.whl", hash = "sha256:753d3f0c646dd43f292a6d664099d1cafce39dda08217510ec5e9b6a681628a0", size = 10464, upload-time = "2026-10-18T06:54:40.508Z" },
 ]
 
 [[package]]
@@ -1386,15 +1386,15 @@ wheels = [
 
 [[package]]
 name = "starlette"
-version = "1.8.0"
+version = "1.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
     { name = "typing-extensions", marker = "python_full_version < '3.13'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e9/0c/6efb252d091ecccd7d62048ae11f0ea35cd75a4fbaeea5e30f9c3bf91d10/starlette-1.8.0.tar.gz", hash = "sha256:1565dc0b35d5737a271ed1e0e04e949f4e81198799f216d2667b0a0fb9cf9522", size = 2730457, upload-time = "2026-10-13T07:54:39.53Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ad/eb/4e197bf26b023abafc5e9043ec8710d7de0fcb032d0969045236d72aa0b1/starlette-1.9.0.tar.gz", hash = "sha256:3d931de246ed870e35ce605974440816ef895e592f255d1396cfdf191d4c4318", size = 2732466, upload-time = "2026-10-18T15:50:33.189Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c1/b0/5742e4ac7af5eb58ec3470a537a49d7aa507e5539413e504b3a65ef50ba8/starlette-1.8.0-py3-none-any.whl", hash = "sha256:dfdd6b29c26483288088d990eee59631dedadd66ce20d203402a7ca8e3c4656f", size = 79612, upload-time = "2026-10-13T07:54:38.019Z" },
+    { url = "https://files.pythonhosted.org/packages/f3/93/181df62699d9b5aca1d87e5cfda131dac87e3cdaebf668662f7206ca3470/starlette-1.9.0-py3-none-any.whl", hash = "sha256:fd3f159936e882d06c1108f84688f7cda2cf85fc6a592a50edbd175e882c2ddc", size = 80335, upload-time = "2026-10-18T15:50:31.526Z" },
 ]
 
 [[package]]
