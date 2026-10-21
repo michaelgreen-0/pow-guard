@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Proof-of-work guard"
 requires-python = ">=3.12"
 dependencies = [
-    "certifi==2026.7.22",
+    "certifi==2026.10.18",
     "charset-normalizer==3.5.2",
     "idna==3.20",
     "requests==2.34.2",
@@ -12,14 +12,14 @@ dependencies = [
     "sockets==1.0.0",
     "urllib3==2.8.0",
     "aiohttp==3.14.5",
-    "fastapi==0.143.3",
+    "fastapi==0.146.0",
     "uvicorn==0.54.0",
     "python-dotenv==1.2.4",
     "redis==8.1.0",
     "jinja2==3.1.6",
     "brotli==1.2.0",
     "python-json-logger==4.2.0",
-    "starlette==1.8.0",
+    "starlette==1.9.0",
     "typing-extensions==4.16.0",
 ]
 
@@ -28,7 +28,7 @@ dev = [
     "black==26.10.1",
     "coverage==7.16.2",
     "pytest==9.1.1",
-    "pytest-env==1.8.0",
+    "pytest-env==1.8.1",
     "fakeredis==2.40.0",
     "pytest-mock==3.17.0",
     "freezegun==1.5.5",
