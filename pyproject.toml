@@ -26,9 +26,9 @@ dependencies = [
 [dependency-groups]
 dev = [
     "black==26.10.1",
-    "coverage==7.17.1",
+    "coverage==7.17.2",
     "pytest==9.2.0",
-    "pytest-env==1.8.4",
+    "pytest-env==1.8.5",
     "fakeredis==2.40.0",
     "pytest-mock==3.17.0",
     "freezegun==1.5.5",
