@@ -28,7 +28,7 @@ dev = [
     "black==26.10.1",
     "coverage==7.17.5",
     "pytest==9.2.0",
-    "pytest-env==1.8.7",
+    "pytest-env==1.8.8",
     "fakeredis==2.41.0",
     "pytest-mock==3.17.0",
     "freezegun==1.5.5",
